@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Comfland Imperfect Throw Pillow. Sign up to be notified when it becomes available." />
+  <title>Comfland | Imperfect Throw Pillow</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="#product">Comfland</a>
+      <button class="menu-toggle" id="menuToggle" type="button" aria-expanded="false" aria-controls="siteMenu" aria-label="Open menu">
+        <span class="menu-icon" aria-hidden="true"></span>
+      </button>
+    </div>
+    <nav class="site-menu" id="siteMenu" aria-label="Site menu" hidden>
+      <a href="#product">Product</a>
+      <a href="#signup">Get updates</a>
+      <a href="#footer">Contact</a>
+    </nav>
+  </header>
+
+  <main class="product-layout" id="product">
+    <figure class="product-media">
+      <img src="assets/pillow.jpg" alt="Imperfect Throw Pillow by Comfland" width="951" height="831" />
+    </figure>
+
+    <section class="product-info" id="signup">
+      <p class="brand-eyebrow">Comfland</p>
+      <h1>Imperfect Throw Pillow</h1>
+      <div class="product-copy">
+        <p>Due to random variability in spinning, weaving, dyeing, and other production processes, these throw pillows may feature minor cosmetic imperfections, such as irregular slubs, uneven coloration, or uneven edging.</p>
+        <p>While their appearance may not meet a perfect standard, these imperfections do not affect their functionality or everyday use.</p>
+      </div>
+
+      <div class="signup-block">
+        <h2>Interested in this product?</h2>
+        <p class="signup-intro">We're currently gathering interest before making it available. Leave your email if you'd like to receive more information when it becomes available.</p>
+        <form class="email-form" id="emailForm" novalidate>
+          <label for="email">Email</label>
+          <div class="form-row">
+            <input type="email" id="email" name="email" placeholder="Enter your email address" autocomplete="email" required />
+            <button class="submit-button" type="submit">Submit</button>
+          </div>
+          <p class="form-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" id="footer">
+    <div class="footer-inner">
+      <span>Comfland</span>
+      <span>Imperfect Throw Pillow</span>
+    </div>
+  </footer>
+</body>
+</html>
