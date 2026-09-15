@@ -3,9 +3,9 @@
  * Deploy this script as a Google Apps Script Web App.
  */
 
-// Optional: paste your spreadsheet ID here.
-// If you leave this as-is, the script uses the spreadsheet it is bound to.
-const GOOGLE_SHEET_ID = "YOUR_GOOGLE_SHEET_ID";
+// The Comfland response spreadsheet is fixed explicitly so the Web App
+// always writes to this sheet, even if the script is not container-bound.
+const GOOGLE_SHEET_ID = "1g4P0xq0jSnsvs-zfubOXa7B8BVaq4-prCmzd9OYHzW0";
 const SHEET_NAME = "Emails";
 const HEADERS = [
   "Timestamp",
@@ -59,10 +59,11 @@ function setupSheet() {
 }
 
 function getSheet_() {
-  const spreadsheet =
-    GOOGLE_SHEET_ID && GOOGLE_SHEET_ID !== "YOUR_GOOGLE_SHEET_ID"
-      ? SpreadsheetApp.openById(GOOGLE_SHEET_ID)
-      : SpreadsheetApp.getActiveSpreadsheet();
+  if (!GOOGLE_SHEET_ID || GOOGLE_SHEET_ID === "YOUR_GOOGLE_SHEET_ID") {
+    throw new Error("GOOGLE_SHEET_ID is not configured.");
+  }
+
+  const spreadsheet = SpreadsheetApp.openById(GOOGLE_SHEET_ID);
 
   let sheet = spreadsheet.getSheetByName(SHEET_NAME);
   if (!sheet) {

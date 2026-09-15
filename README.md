@@ -71,6 +71,8 @@ Google Sheets
 3. 项目名称改成 `Comfland Signups`，保存。
 4. 在函数下拉框中选择 `setupSheet`，点击运行，按提示授权。运行后 `Emails` 表会自动生成 9 列表头：`Timestamp`、`Visit ID`、`Email`、`Group`、`Time On Page (s)`、`Device`、`Region`、`Language`、`Source`。
 
+本项目已经把表格 ID `1g4P0xq0jSnsvs-zfubOXa7B8BVaq4-prCmzd9OYHzW0` 写进 `apps-script.gs`，所以只要你继续使用这个表格，就不需要再改 ID。
+
 ### 2.3 部署为 Web App
 
 1. 点击右上角 `部署 > 新建部署`。
@@ -151,7 +153,7 @@ https://vvivian2025wifi-creator.github.io/comfland-landing/?group=instagram-b
 | 变量 | 位置 | 说明 |
 | --- | --- | --- |
 | `GOOGLE_SCRIPT_URL` | `script.js` | 必须替换为你的 Apps Script Web App URL |
-| `GOOGLE_SHEET_ID` | `apps-script.gs` | 可选；脚本绑定在表格内时不用替换 |
+| `GOOGLE_SHEET_ID` | `apps-script.gs` | 已设置为你的 Comfland 表格；换表格时才需要替换 |
 
 ## 5. 常见问题
 
@@ -183,9 +185,9 @@ https://vvivian2025wifi-creator.github.io/comfland-landing/?group=instagram-b
  * Deploy this script as a Google Apps Script Web App.
  */
 
-// Optional: paste your spreadsheet ID here.
-// If you leave this as-is, the script uses the spreadsheet it is bound to.
-const GOOGLE_SHEET_ID = "YOUR_GOOGLE_SHEET_ID";
+// The Comfland response spreadsheet is fixed explicitly so the Web App
+// always writes to this sheet, even if the script is not container-bound.
+const GOOGLE_SHEET_ID = "1g4P0xq0jSnsvs-zfubOXa7B8BVaq4-prCmzd9OYHzW0";
 const SHEET_NAME = "Emails";
 const HEADERS = [
   "Timestamp",
@@ -239,10 +241,11 @@ function setupSheet() {
 }
 
 function getSheet_() {
-  const spreadsheet =
-    GOOGLE_SHEET_ID && GOOGLE_SHEET_ID !== "YOUR_GOOGLE_SHEET_ID"
-      ? SpreadsheetApp.openById(GOOGLE_SHEET_ID)
-      : SpreadsheetApp.getActiveSpreadsheet();
+  if (!GOOGLE_SHEET_ID || GOOGLE_SHEET_ID === "YOUR_GOOGLE_SHEET_ID") {
+    throw new Error("GOOGLE_SHEET_ID is not configured.");
+  }
+
+  const spreadsheet = SpreadsheetApp.openById(GOOGLE_SHEET_ID);
 
   let sheet = spreadsheet.getSheetByName(SHEET_NAME);
   if (!sheet) {
