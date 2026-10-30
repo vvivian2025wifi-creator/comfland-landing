@@ -1,4 +1,4 @@
-# Comfland - Slightly Imperfect Bucket Hat Landing Page
+# Comfland - Slightly Imperfect Soap Landing Page
 
 单产品 A/B 测试落地页，纯静态 HTML/CSS/JS，无构建步骤。桌面端为左图右文双栏，移动端自动切换为上下排列。访客打开页面时会立即写入一条记录，提交邮箱或离开页面时更新同一条记录，因此每个广告点击都会在 Google Sheets 里留档。
 
@@ -11,7 +11,7 @@ comfland-landing/
 ├── script.js
 ├── apps-script.gs
 ├── assets/
-│   └── 帽子.png
+│   └── soap.png
 └── README.md
 ```
 
@@ -45,7 +45,7 @@ https://vvivian2025wifi-creator.github.io/comfland-landing/?group=google-b
 
 ## 1. 商品图片
 
-页面读取的是 `assets/帽子.png`。以后替换图片时，把新图保存为 `assets/帽子.png` 即可，无需修改任何代码。
+页面读取的是 `assets/soap.png`。以后替换图片时，把新图保存为 `assets/soap.png` 即可，无需修改任何代码。
 
 ## 2. Google Sheets 收集数据
 
